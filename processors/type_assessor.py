@@ -47,7 +47,7 @@ def detect_type(value):
     for fmt in DATE_FORMATS:
         try:
             datetime.strptime(value, fmt)
-            return "id_Date"
+            return f"id_Date||{fmt}"
         except ValueError:
             pass
 

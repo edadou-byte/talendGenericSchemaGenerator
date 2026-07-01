@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema>
+	<column comment="" default="" key="false" label="testString" length="100" nullable="true" originalDbColumnName="testString" pattern="" precision="0" talendType="id_String"/>
+	<column comment="" default="" key="false" label="testInt" length="-1" nullable="true" originalDbColumnName="testInt" pattern="" precision="3" talendType="id_Integer"/>
+	<column comment="" default="" key="false" label="testFloat" length="-1" nullable="true" originalDbColumnName="testFloat" pattern="" precision="0" talendType="id_Float"/>
+	<column comment="" default="" key="false" label="testDate" length="-1" nullable="true" originalDbColumnName="testDate" pattern="&quot;yyyy-MM-dd'T'HH:mm:ss&quot;" precision="0" talendType="id_Date"/>
+</schema>

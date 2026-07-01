@@ -1,2 +1,2 @@
-test1;test2;test3;test4;test5
-val1;val2;val3;val4;val5
+test1;test2;test3;test4;test5;test_date1;test_date2;test_date3
+val1;val2;val3;val4;val5;12/01/1997;1997-01-12;1997-01-12T00:00:00

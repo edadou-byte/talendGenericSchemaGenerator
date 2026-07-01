@@ -1,10 +1,13 @@
 import csv
 
+from processors.type_assessor import detect_type
+
+
 def open_csv_file(path: str) -> dict:
     columns = {}
 
     with open(path, 'r') as f:
-        sample = f.read(1024)
+        sample = f.read(4096)
         dialect = csv.Sniffer().sniff(sample)
 
         f.seek(0)
@@ -24,8 +27,8 @@ def open_csv_file(path: str) -> dict:
 def get_columns_types(columns: dict) -> list:
     types = []
     for col_name in columns:
-        print(columns[col_name])
-        types.append(columns[col_name])
-    print(types)
+        for i in range(0, len(columns[col_name])):
+            types.append(f"{col_name}&&{detect_type(columns[col_name][i])}")
+    return types
 
 

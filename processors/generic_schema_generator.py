@@ -3,16 +3,15 @@ from xml.etree.ElementTree import Element
 
 
 class schema_row:
-    def __init__(self, label, pattern:None, talend_type):
+    def __init__(self, label, pattern, talend_type):
         self.comment = ""
-        self.default = ""
-        self.key = ""
+        self.default = "false"
+        self.key = "false"
         self.label = label
         self.length = "-1"
         self.nullable = "true"
         self.originalDbColumnName = label
         self.pattern = pattern
-        self.talendType = talend_type
         self.precision = "0"
         self.talendType = talend_type
 
@@ -44,7 +43,7 @@ def create_xml_rows(types_list: list) -> list:
 
     for t_type in types_list:
         label, talend_type, pattern = parse_talend_types(t_type)
-        row = schema_row(label, talend_type, pattern)
+        row = schema_row(label, pattern, talend_type)
         count += 1
         root.append(row.write_xml())
         rows.append(row)

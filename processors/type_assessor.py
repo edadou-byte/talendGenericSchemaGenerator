@@ -15,6 +15,27 @@ INT_MIN = -2147483648
 INT_MAX = 2147483647
 
 
+def python_to_java_date_format(py_format: str) -> str:
+    mapping = {
+        "%Y": "yyyy",
+        "%m": "MM",
+        "%d": "dd",
+        "%H": "HH",
+        "%M": "mm",
+        "%S": "ss",
+        "T" : "'T'"
+     }
+
+    java_format = py_format
+
+    for py_token, java_token in mapping.items():
+        java_format = java_format.replace(py_token, java_token)
+
+    return java_format
+
+
+
+
 def detect_type(value):
     value = value.strip()
 
@@ -47,7 +68,7 @@ def detect_type(value):
     for fmt in DATE_FORMATS:
         try:
             datetime.strptime(value, fmt)
-            return f"id_Date||{fmt}"
+            return f"id_Date||{python_to_java_date_format(fmt)}"
         except ValueError:
             pass
 

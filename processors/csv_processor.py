@@ -2,6 +2,7 @@ import csv
 import logging
 
 from processors.type_assessor import detect_type
+from collections import Counter
 
 # Configuration des logs
 logging.basicConfig(
@@ -58,6 +59,7 @@ def get_columns_types(columns: dict) -> list:
     logger.info("Début de la détection des types")
 
     types = []
+    detected_type = []
 
     for col_name in columns:
         logger.info(
@@ -66,9 +68,28 @@ def get_columns_types(columns: dict) -> list:
             len(columns[col_name])
         )
 
-        for value in columns[col_name]:
-            detected_type = detect_type(value)
-            types.append(f"{col_name}&&{detected_type}")
+        int = 0
+        final_detected_type = ""
+
+        counts = {}
+        max_value = None
+        max_count = 0
+
+        for item in columns[col_name]:
+            detected_type = detect_type(item)
+            count = counts.get(detected_type, 0) + 1
+            counts[detected_type] = count
+
+            if count > max_count:
+                max_count = count
+                max_value = detected_type
+
+            if detected_type == 'id_String':
+                max_value = detected_type
+                break
+
+
+        types.append(f"{col_name}&&{max_value}")
 
         logger.debug(
             "Types détectés pour '%s' : %s",
